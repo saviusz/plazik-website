@@ -1,3 +1,6 @@
+import { PageProps } from "../types";
+import { PolaroidCard } from "../components";
+
 const FROG_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCRGSPror_oBxePeajN8Jo9qclkgaSPl_XE3dcMLfJBvh0fmdE8yDme7xM_pEFlshlXdTkon3Hd4PbhceytMC32F1RdM7HsaUbuVOCeCdpDgfDumZH9KR1z5eWNeWpaS_w2zUuDG3jaPWesK6l4yMgg4Y-BQCKwfsoqLHfA7BA0NXbBGRNMgTVbCJotOGP2YRnfYP5a_x_CjlY48DzFtqwwB9iqcGmGQMYSgKwX7Q3uGUXwvceF50vKv1SeotL8ahDvI2W52Y9kTj9z";
 
@@ -25,33 +28,9 @@ const ACTIVITY_PHOTOS = [
   },
 ];
 
-function PolaroidCard({ src, label, tilt, tape, marginTop }) {
-  return (
-    <div
-      className={`group relative ${tilt} hover:rotate-0 hover:scale-[1.02] hover:z-10 transition-all duration-300 ${marginTop}`}
-    >
-      <div className="bg-white p-3 pb-8 border-2 border-gray-200 shadow-lg">
-        <div className="aspect-square bg-gray-200 border border-gray-100 mb-3 overflow-hidden grayscale group-hover:grayscale-0 transition-all">
-          <div
-            className="w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url('${src}')` }}
-          />
-        </div>
-        <p className="font-hand text-center text-xl text-gray-800 font-bold">
-          {label}
-        </p>
-      </div>
-      <div
-        className={`absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 ${tape}`}
-      />
-    </div>
-  );
-}
-
-export default function HomePage({ onNavigate }) {
+export default function HomePage({ onNavigate }: PageProps) {
   return (
     <>
-      {/* Hero */}
       <section className="w-full max-w-[900px] mx-auto px-4 pt-8 pb-4 border-b-4 border-dashed border-text-main">
         <div className="flex flex-col md:flex-row gap-10 items-center">
           <div className="flex-1 text-center md:text-left">
@@ -69,7 +48,6 @@ export default function HomePage({ onNavigate }) {
             </p>
           </div>
 
-          {/* Mascot image */}
           <div className="relative w-48 md:w-64 flex-shrink-0 group">
             <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
             <div className="relative border-2 border-text-main bg-white p-2 z-10 aspect-square overflow-hidden">
@@ -85,7 +63,6 @@ export default function HomePage({ onNavigate }) {
         </div>
       </section>
 
-      {/* Activities */}
       <section className="w-full max-w-[900px] mx-auto px-4 py-10 bg-gray-50">
         <div className="flex justify-between items-end mb-8">
           <h2 className="font-pixel text-4xl underline decoration-wavy decoration-primary decoration-4 underline-offset-4">
@@ -115,10 +92,8 @@ export default function HomePage({ onNavigate }) {
         </div>
       </section>
 
-      {/* Info cards */}
       <section className="w-full max-w-[900px] mx-auto px-4 py-10 border-t-4 border-dashed border-text-main bg-primary/10">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Location card */}
           <div className="flex-1 bg-white border-2 border-text-main p-6 shadow-retro relative">
             <div className="absolute -top-4 -left-4 bg-primary border-2 border-text-main w-12 h-12 flex items-center justify-center shadow-retro-sm">
               <span className="material-symbols-outlined text-2xl">location_on</span>
@@ -137,7 +112,6 @@ export default function HomePage({ onNavigate }) {
             </p>
           </div>
 
-          {/* Sticky note */}
           <div className="md:w-1/3 bg-[#fff9c4] text-black p-6 shadow-lg rotate-1 border border-black/10 self-start relative">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-sm border border-red-700" />
             <h4 className="font-pixel text-2xl mb-2 border-b-2 border-black/20 pb-1">

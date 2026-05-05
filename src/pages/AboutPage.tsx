@@ -1,4 +1,5 @@
-import { PageHero, CtaBanner } from "../components/shared";
+import { PageProps } from "../types";
+import { PageHero, CtaBanner, Section, StatCard, PhotoCard, Divider } from "../components";
 
 const STATS = [
   {
@@ -28,7 +29,7 @@ const MEMORIES = [
 const FROG_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDCFAABswJRbh2JyKIDnFbDfhoUUzlX73qteFciEz85KxOylSREdYYqvaAjTlPM_GqYnfyI91MOZLDMdPBO0nMo2LupOCqGjLd1IUHV9vQBxQNu-CGJw6k6MQ8L1OefUm25skdRsuYobl7EtYyaiiINnYZFc7guEdHvK93BxTnjL5jatzxdTxGcT8zK25KHWTjo5dSwD5FuLLbv14BC3YumpYGJpSDR6lhYX4qWd4DEt9jYTHetHb9ceKYwN9zn28ZjpgSiVT77GY56";
 
-export default function AboutPage({ onNavigate }) {
+export default function AboutPage({ onNavigate }: PageProps) {
   return (
     <>
       <PageHero
@@ -39,9 +40,8 @@ export default function AboutPage({ onNavigate }) {
         imageCaption="RYS. 1: Maskotka na Służbie"
       />
 
-      {/* Stats */}
       <section className="w-full py-16 bg-accent-light">
-        <div className="max-w-[1000px] mx-auto px-6">
+        <Section>
           <h2 className="text-4xl md:text-5xl font-black text-text-main mb-4 inline-block relative z-10">
             Nasza Historia w Liczbach
           </h2>
@@ -50,20 +50,13 @@ export default function AboutPage({ onNavigate }) {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
             {STATS.map(({ value, desc }) => (
-              <div
-                key={value}
-                className="bg-white border-2 border-text-main shadow-retro-sm p-6"
-              >
-                <h3 className="text-2xl font-pixel font-bold mb-3">{value}</h3>
-                <p className="text-text-secondary font-hand text-xl leading-6">{desc}</p>
-              </div>
+              <StatCard key={value} value={value} desc={desc} />
             ))}
           </div>
-        </div>
+        </Section>
       </section>
 
-      {/* Photo memories */}
-      <section className="w-full max-w-[1000px] px-6 py-12">
+      <Section className="py-12">
         <h2 className="text-3xl md:text-4xl font-black text-text-main mb-4">
           Kroniki i Wspominki
         </h2>
@@ -72,23 +65,13 @@ export default function AboutPage({ onNavigate }) {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {MEMORIES.map(({ label, filter }) => (
-            <div key={label} className="bg-white border-2 border-text-main shadow-retro-sm p-3 pb-8 group">
-              <div className={`aspect-square overflow-hidden mb-3 ${filter} transition-all duration-500`}>
-                <img
-                  alt={label}
-                  className="w-full h-full object-cover"
-                  src={FROG_IMG}
-                />
-              </div>
-              <p className="font-hand text-center text-text-main text-xl font-bold">
-                {label}
-              </p>
-            </div>
+            <PhotoCard key={label} src={FROG_IMG} caption={label} filter={filter} className="bg-white border-2 border-text-main shadow-retro-sm p-3 pb-8 group" />
           ))}
         </div>
 
-        <div className="mt-10 pt-6 border-t-2 border-dashed border-text-main/30">
-          <h3 className="text-2xl font-pixel font-bold text-center mb-6">
+        <div className="mt-10 pt-6">
+          <Divider />
+          <h3 className="text-2xl font-pixel font-bold text-center mb-6 mt-6">
             Ziomki z Innych Stawów (Partnerzy)
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
@@ -102,7 +85,7 @@ export default function AboutPage({ onNavigate }) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       <CtaBanner
         title="Chcesz być częścią tej legendy?"

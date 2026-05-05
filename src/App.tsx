@@ -7,12 +7,9 @@ import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import DocumentsPage from "./pages/DocumentsPage";
 import RulesPage from "./pages/RulesPage";
+import { PageName } from "./types";
 
-/**
- * Page registry — add new pages here.
- * Each entry maps a route key → component.
- */
-const PAGES = {
+const PAGES: Record<PageName, () => React.JSX.Element> = {
   home: HomePage,
   about: AboutPage,
   trips: TripsPage,
@@ -23,9 +20,9 @@ const PAGES = {
 };
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState<PageName>("home");
 
-  const navigate = (page) => {
+  const navigate = (page: PageName) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

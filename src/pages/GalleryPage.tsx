@@ -1,4 +1,5 @@
-import { PageHero, CtaBanner } from "../components/shared";
+import { PageProps } from "../types";
+import { PageHero, CtaBanner, Section, PhotoCard } from "../components";
 
 const GALLERY_ITEMS = [
   { filter: "grayscale hover:grayscale-0", caption: "Bieszczady '23" },
@@ -12,7 +13,7 @@ const GALLERY_ITEMS = [
 const FROG_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDCFAABswJRbh2JyKIDnFbDfhoUUzlX73qteFciEz85KxOylSREdYYqvaAjTlPM_GqYnfyI91MOZLDMdPBO0nMo2LupOCqGjLd1IUHV9vQBxQNu-CGJw6k6MQ8L1OefUm25skdRsuYobl7EtYyaiiINnYZFc7guEdHvK93BxTnjL5jatzxdTxGcT8zK25KHWTjo5dSwD5FuLLbv14BC3YumpYGJpSDR6lhYX4qWd4DEt9jYTHetHb9ceKYwN9zn28ZjpgSiVT77GY56";
 
-export default function GalleryPage({ onNavigate }) {
+export default function GalleryPage({ onNavigate }: PageProps) {
   return (
     <>
       <PageHero
@@ -23,27 +24,13 @@ export default function GalleryPage({ onNavigate }) {
         imageCaption="RYS. 1: Kronikarz w Terenie"
       />
 
-      <section className="w-full max-w-[1000px] mx-auto px-6 py-10">
+      <Section className="py-10">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {GALLERY_ITEMS.map(({ filter, caption }) => (
-            <div
-              key={caption}
-              className="group relative bg-white border-2 border-text-main shadow-retro-sm p-2 hover:shadow-retro hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all cursor-pointer"
-            >
-              <div className={`aspect-square overflow-hidden ${filter} transition-all duration-500`}>
-                <img
-                  alt={caption}
-                  src={FROG_IMG}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="font-hand text-center text-text-main text-lg font-bold mt-2">
-                {caption}
-              </p>
-            </div>
+            <PhotoCard key={caption} src={FROG_IMG} caption={caption} filter={filter} />
           ))}
         </div>
-      </section>
+      </Section>
 
       <CtaBanner
         title="Byłeś z nami?"

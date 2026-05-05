@@ -1,17 +1,23 @@
+import { PageName, NavigateFn } from "../types";
+
+interface HeaderProps {
+  currentPage: PageName;
+  onNavigate: NavigateFn;
+}
+
 const NAV_LINKS = [
-  { label: "O nas", page: "about" },
-  { label: "Wyprawy", page: "trips" },
-  { label: "Galeria", page: "gallery" },
-  { label: "Dokumenty", page: "documents" },
-  { label: "Zasady gry", page: "rules" },
-  { label: "Kontakt", page: "contact" },
+  { label: "O nas", page: "about" as PageName },
+  { label: "Wyprawy", page: "trips" as PageName },
+  { label: "Galeria", page: "gallery" as PageName },
+  { label: "Dokumenty", page: "documents" as PageName },
+  { label: "Zasady gry", page: "rules" as PageName },
+  { label: "Kontakt", page: "contact" as PageName },
 ];
 
-export default function Header({ currentPage, onNavigate }) {
+export default function Header({ currentPage, onNavigate }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b-2 border-text-main">
       <div className="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo */}
         <button
           className="flex items-center gap-3"
           onClick={() => onNavigate("home")}
@@ -26,7 +32,6 @@ export default function Header({ currentPage, onNavigate }) {
           </h2>
         </button>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 font-hand text-xl">
           {NAV_LINKS.map(({ label, page }) => (
             <button
@@ -43,7 +48,6 @@ export default function Header({ currentPage, onNavigate }) {
           ))}
         </nav>
 
-        {/* CTA + Mobile menu */}
         <div className="flex items-center gap-4">
           <button className="hidden md:flex h-10 px-6 items-center justify-center bg-primary border-2 border-text-main shadow-retro text-text-main font-bold hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-retro-sm transition-all font-pixel text-xl tracking-wider">
             WBJAJ!

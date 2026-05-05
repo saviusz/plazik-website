@@ -1,8 +1,13 @@
+const SOCIAL_LINKS = [
+  { icon: "public", href: "#" },
+  { icon: "share", href: "#" },
+  { icon: "thumb_up", href: "#" },
+];
+
 export default function Footer() {
   return (
     <footer className="w-full bg-white border-t-2 border-text-main py-12 mt-auto">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-        {/* Brand */}
         <div className="flex flex-col items-center md:items-start gap-2">
           <div className="flex items-center gap-2 text-text-main">
             <span className="material-symbols-outlined text-3xl">cruelty_free</span>
@@ -15,13 +20,8 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Social links */}
         <div className="flex gap-4">
-          {[
-            { icon: "public", href: "#" },
-            { icon: "share", href: "#" },
-            { icon: "thumb_up", href: "#" },
-          ].map(({ icon, href }) => (
+          {SOCIAL_LINKS.map(({ icon, href }) => (
             <a
               key={icon}
               href={href}

@@ -1,3 +1,5 @@
+import { Section, SectionHeader, EventCard, TripCard } from "../components";
+
 const EVENTS = [
   {
     title: "SLAJDOWISKA",
@@ -41,7 +43,6 @@ const REGULAR_TRIPS = [
 export default function TripsPage() {
   return (
     <>
-      {/* Hero */}
       <section className="w-full max-w-[900px] mx-auto px-4 py-10 flex flex-col items-center text-center gap-6 relative">
         <div className="hidden md:block absolute top-0 right-10 rotate-[15deg] text-primary animate-pulse">
           <span className="material-symbols-outlined text-4xl">event_note</span>
@@ -57,68 +58,33 @@ export default function TripsPage() {
         </p>
       </section>
 
-      {/* Events & Gatherings */}
-      <section className="w-full max-w-[900px] mx-auto px-4 py-8 flex flex-col gap-8">
-        <div className="flex items-center gap-4">
-          <div className="bg-text-main text-primary p-2 border-2 border-primary shadow-retro-sm">
-            <span className="material-symbols-outlined text-3xl">celebration</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-pixel tracking-tight">
-            IMPREZY &amp; SPOTKANIA
-          </h2>
-        </div>
+      <Section className="py-8 narrow">
+        <SectionHeader title="IMPREZY & SPOTKANIA" icon="celebration" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
           {EVENTS.map(({ title, schedule, desc, bg, shadow }) => (
-            <div
+            <EventCard
               key={title}
-              className="group bg-white border-2 border-text-main p-6 shadow-retro hover:shadow-retro-sm hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex flex-col gap-4 relative overflow-hidden"
-            >
-              <div className="absolute -right-4 -top-4 w-16 h-16 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/40 transition-colors" />
-              <div className="flex justify-between items-start">
-                <h3
-                  className={`text-3xl font-pixel ${bg} px-2 inline-block border border-text-main -rotate-1 ${
-                    shadow ? "shadow-retro-sm" : ""
-                  }`}
-                >
-                  {title}
-                </h3>
-                <span className="font-hand font-bold text-gray-500 rotate-3">{schedule}</span>
-              </div>
-              <p className="text-base font-display font-medium leading-relaxed">{desc}</p>
-            </div>
+              title={title}
+              schedule={schedule}
+              desc={desc}
+              bg={bg}
+              shadow={shadow}
+            />
           ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Regular trips */}
-      <section className="w-full max-w-[900px] mx-auto px-4 py-8 flex flex-col gap-8">
-        <div className="flex items-center gap-4 justify-end">
-          <h2 className="text-4xl md:text-5xl font-pixel tracking-tight text-right">
-            STAŁE TRIPY
-          </h2>
-          <div className="bg-text-main text-primary p-2 border-2 border-primary shadow-retro-sm">
-            <span className="material-symbols-outlined text-3xl">hiking</span>
-          </div>
-        </div>
+      <Section className="py-8 narrow">
+        <SectionHeader title="STAŁE TRIPY" icon="hiking" align="right" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           {REGULAR_TRIPS.map(({ title, when, desc }) => (
-            <div
-              key={title}
-              className="bg-white border-2 border-text-main p-5 shadow-retro flex flex-col items-start gap-3 hover:shadow-retro-sm hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-            >
-              <h3 className="text-3xl font-pixel">{title}</h3>
-              <p className="font-hand text-sm font-bold text-gray-500">{when}</p>
-              <p className="text-sm font-display font-medium border-t-2 border-text-main pt-4 w-full">
-                {desc}
-              </p>
-            </div>
+            <TripCard key={title} title={title} when={when} desc={desc} />
           ))}
         </div>
-      </section>
+      </Section>
 
-      {/* CTA */}
       <section className="w-full max-w-[900px] mx-auto px-4 py-10">
         <div className="relative overflow-hidden bg-primary border-4 border-text-main shadow-retro p-8 md:p-12 text-center">
           <div

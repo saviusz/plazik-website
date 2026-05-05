@@ -1,4 +1,4 @@
-import { PageHero, CtaBanner } from "../components/shared";
+import { PageHero, CtaBanner, Section, SectionCard, SectionFooter, IconBox, Divider } from "../components";
 
 const CONTACT_ITEMS = [
   {
@@ -78,48 +78,29 @@ export default function ContactPage() {
         imageCaption="RYS. 1: Oczekiwanie na sygnał"
       />
 
-      {/* Contact info card */}
-      <section className="w-full py-10">
-        <div className="max-w-[1000px] mx-auto px-6">
-          <div className="bg-white border-2 border-text-main shadow-retro p-8 md:p-12 relative rounded-sm">
-            {/* Tape strip */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-gray-200 border-2 border-text-main rounded-full z-10 flex items-center justify-center">
-              <div className="w-20 h-1 bg-gray-400 rounded-full" />
-            </div>
-
-            <div className="space-y-8">
-              {CONTACT_ITEMS.map(({ icon, title, content }, idx) => (
-                <div key={title}>
-                  {idx > 0 && (
-                    <div className="w-full border-t-2 border-dashed border-text-main/30 mb-8" />
-                  )}
-                  <div className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-14 h-14 bg-primary/20 border-2 border-text-main flex items-center justify-center shadow-retro-sm">
-                      <span className="material-symbols-outlined text-3xl text-text-main">
-                        {icon}
-                      </span>
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="text-2xl font-bold font-display mb-2">{title}</h3>
-                      {content}
-                    </div>
+      <Section className="py-10">
+        <SectionCard>
+          <div className="space-y-8">
+            {CONTACT_ITEMS.map(({ icon, title, content }, idx) => (
+              <div key={title}>
+                {idx > 0 && <Divider className="mb-8" />}
+                <div className="flex gap-6 items-start">
+                  <IconBox icon={icon} />
+                  <div className="flex-grow">
+                    <h3 className="text-2xl font-bold font-display mb-2">{title}</h3>
+                    {content}
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-10 pt-6 border-t-4 border-double border-text-main flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="font-pixel text-lg text-text-secondary">
-                Ostatnio widziani: W kuchni, robiąc tosty
               </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary-dark">verified_user</span>
-                <span className="font-bold">Potwierdzona miejscówka</span>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-      </section>
+
+          <SectionFooter
+            updateText="Ostatnio widziani: W kuchni, robiąc tosty"
+            verifiedText="Potwierdzona miejscówka"
+          />
+        </SectionCard>
+      </Section>
 
       <CtaBanner
         title="Nie lubisz dzwonić?"
